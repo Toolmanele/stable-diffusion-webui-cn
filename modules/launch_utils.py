@@ -461,10 +461,13 @@ def prepare_environment():
             # Limitation:
             #   - Only works for python 3.10
             # url_prefix = "https://github.com/Nuullll/intel-extension-for-pytorch/releases/download/v2.0.110+xpu-master+dll-bundle"
-            url_prefix = "https://github.com/Nuullll/intel-extension-for-pytorch/releases/download/v2.0.110%2Bxpu-master%2Bdll-bundle"
+            # https://gitcode.com/ToolmanEle/intel-extension-for-pytorch/releases/download/v2.0.110_xpu_master_dll_bundle/intel_extension_for_pytorch-2.0.110%2Bgitc6ea20b-cp310-cp310-win_amd64.whl
+            # https://gitcode.com/ToolmanEle/intel-extension-for-pytorch/releases/download/v2.0.110_xpu_master_dll_bundle/torch-2.0.0a0%2Bgite9ebda2-cp310-cp310-win_amd64.whl
+            # https://gitcode.com/ToolmanEle/intel-extension-for-pytorch/releases/download/v2.0.110_xpu_master_dll_bundle/torchvision-0.15.2a0%2Bfa99a53-cp310-cp310-win_amd64.whl
+            url_prefix = "https://gitcode.com/ToolmanEle/intel-extension-for-pytorch/releases/download/v2.0.110_xpu_master_dll_bundle"
             torch_command = os.environ.get(
                 "TORCH_COMMAND",
-                f"pip install {url_prefix}/torch-2.0.0a0+gite9ebda2-cp310-cp310-win_amd64.whl {url_prefix}/torchvision-0.15.2a0+fa99a53-cp310-cp310-win_amd64.whl {url_prefix}/intel_extension_for_pytorch-2.0.110+gitc6ea20b-cp310-cp310-win_amd64.whl",
+                f"pip install --index-url {pip_index_url} {url_prefix}/torch-2.0.0a0+gite9ebda2-cp310-cp310-win_amd64.whl {url_prefix}/torchvision-0.15.2a0+fa99a53-cp310-cp310-win_amd64.whl {url_prefix}/intel_extension_for_pytorch-2.0.110+gitc6ea20b-cp310-cp310-win_amd64.whl",
             )
         else:
             # Using official IPEX release for linux since it's already an AOT build.
@@ -472,7 +475,7 @@ def prepare_environment():
             # See https://intel.github.io/intel-extension-for-pytorch/index.html#installation for details.
             torch_index_url = os.environ.get(
                 "TORCH_INDEX_URL",
-                "https://pytorch-extension.intel.com/release-whl/stable/xpu/us/",
+                "https://pytorch-extension.intel.com/release-whl/stable/xpu/cn/",
             )
             torch_command = os.environ.get(
                 "TORCH_COMMAND",
